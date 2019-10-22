@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Planetc.Models;
 
 namespace Planetc
 {
@@ -23,6 +25,9 @@ namespace Planetc
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      string mySqlConnection = "server=localhost;userid=root;password=root;port=3306;database=BrightIdeasDb;SslMode=None";
+      services.AddDbContext<PlanetcDBContext>(options => options.UseMySql(mySqlConnection));
+      services.AddSession();
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
     }
 
@@ -37,7 +42,7 @@ namespace Planetc
       {
         app.UseExceptionHandler("/Home/Error");
       }
-
+      app.UseSession();
       app.UseStaticFiles();
       app.UseMvc(routes =>
       {
