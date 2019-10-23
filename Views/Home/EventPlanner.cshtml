@@ -1,38 +1,53 @@
 @using Planetc.Models
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+<style>
+    body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-image: url("/img/wedding.jpeg");
+}
+</style>
+<div>
 <h1>Event Planning</h1>
-    <div id="content" />
-<!-- <script src="~/dist/hello.js"></script> -->
-<div class="dragable"> 
-    <table>
-        <tr>
-            <td>
-                Product List
-            </td>
-            <td>
-                Selected Products
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div id="dvleft">
-                    <ul id="lstproducts">
+
+<div class="container wrapper">
+  <div class="row">
+    <div class="col checklist" id="dvlefttasks">
+    <h3>Checklist</h3>
+                    <ul id="lstchecklist">
+                        
+                    </ul>
+    </div>
+    <div class="col checklist" id="dvrighttasks"  >
+        <h3>Tasks Completed</h3>
+                    <ul id="lstselectedtasks"></ul>
+    </div>
+  </div>
+</div>
+
+<div class="container wrapper tall">
+  <div class="row">
+    <div class="col-xl store" id="dvleft">
+    <h3 class="display-8">What you may need:</h3>
+                    <div id="lstproducts">
                         @foreach (Product item in @ViewBag.Products)
                         {
-                            <li draggable='true'> @item.ProductName </li>
-                        }
-                    </ul>
-                </div> 
-            </td>
-            <td>
-                <div id="dvright">
+                            <div  class='product' draggable='true'>
+                            <img src="@item.ImageFileName" style="width: 100px; padding: 1px;" alt=""> 
+                              
+                            <span class="display-4" >@item.ProductName:</span>
+                            <div class="lead">@item.Description</div>
+                            </div>
+                             }
+                    </div>
+    </div>
+    <div class="col-4 store" id="dvright"  >
+        <h3 class="centered">Your Cart</h3>
                     <ul id="lstselectedproducts"></ul>
-                </div>
-            </td>
-        </tr>
-    </table>
+    </div>
+  </div>
 </div>
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -43,7 +58,7 @@
             var lstProducts = $('li');
             //Set Drag on Each 'li' in the list 
                 $.each(lstProducts, function (idx, val) {
-                    $('li').on('dragstart', function (evt) {
+                    $("[draggable]").on('dragstart', function (evt) {
                         evt.originalEvent.dataTransfer.setData("Text", evt.target.textContent);
                         evt.target.draggable = false;
                     });
@@ -53,8 +68,9 @@
                 $("#dvright").on('drop', function (evt) {
                     evt.preventDefault();
                     var data = evt.originalEvent.dataTransfer.getData("Text");
+                    var ss = evt.originalEvent.dataTransfer.getData("Text");
                     var lst = $("#lstselectedproducts");
-                    var li = "<li>"+data+"</li>";
+                    var li = "<li class='lead'>" +"<img src='" + ss + "' style='width: 70px; padding: 1px;' alt=''>" + data+"</li>";
                     li.textContent = data;
                     lst.append(li);
                 });
@@ -74,3 +90,4 @@
         }
     });
 </script>
+</div>

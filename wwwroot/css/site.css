@@ -11,6 +11,7 @@ a.navbar-brand {
 -------------------------------------------------- */
 html {
     font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }
 
 @media (min-width: 768px) {
@@ -172,13 +173,18 @@ body {
     width: 500px;
     margin: 50px auto;
 }
-
-.dragable table, .dragable td {
-    background-color:azure;
- border:double;
+.store{
+height: auto;
+padding: 10px;
+border: 1px lightgrey solid;
+background-color: gold;
+margin: 5px;
+align-content: space-between;
+opacity: .80;
 }
-#dvright,#dvleft {
-    background-color:azure;
-   height:200px;
-   width:300px;
+.product{
+border: 2px solid palegoldenrod;
+padding: 5px;
+margin: 5px;
+background-color: azure;
 }
