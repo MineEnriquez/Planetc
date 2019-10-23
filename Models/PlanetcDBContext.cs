@@ -12,6 +12,7 @@ namespace Planetc.Models
     public DbSet<User> Users { get; set; }
     public DbSet<Message> Messages { get; set; }
     public DbSet<Like> Likes { get; set; }
+    public DbSet<Product> Products {get; set;}
 
   }
 }

@@ -172,3 +172,13 @@ body {
     width: 500px;
     margin: 50px auto;
 }
+
+.dragable table, .dragable td {
+    background-color:azure;
+ border:double;
+}
+#dvright,#dvleft {
+    background-color:azure;
+   height:200px;
+   width:300px;
+}

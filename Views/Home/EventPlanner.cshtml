@@ -1,3 +1,76 @@
+@using Planetc.Models
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <h1>Event Planning</h1>
     <div id="content" />
-<script src="~/js/hello.js"></script>
+<!-- <script src="~/dist/hello.js"></script> -->
+<div class="dragable"> 
+    <table>
+        <tr>
+            <td>
+                Product List
+            </td>
+            <td>
+                Selected Products
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="dvleft">
+                    <ul id="lstproducts">
+                        @foreach (Product item in @ViewBag.Products)
+                        {
+                            <li draggable='true'> @item.ProductName </li>
+                        }
+                    </ul>
+                </div> 
+            </td>
+            <td>
+                <div id="dvright">
+                    <ul id="lstselectedproducts"></ul>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Function to set events for Drag-Drop
+        loadProducts();
+
+        function setEvents() {
+            var lstProducts = $('li');
+            //Set Drag on Each 'li' in the list 
+                $.each(lstProducts, function (idx, val) {
+                    $('li').on('dragstart', function (evt) {
+                        evt.originalEvent.dataTransfer.setData("Text", evt.target.textContent);
+                        evt.target.draggable = false;
+                    });
+                });
+               
+            //Set the Drop on the <div>
+                $("#dvright").on('drop', function (evt) {
+                    evt.preventDefault();
+                    var data = evt.originalEvent.dataTransfer.getData("Text");
+                    var lst = $("#lstselectedproducts");
+                    var li = "<li>"+data+"</li>";
+                    li.textContent = data;
+                    lst.append(li);
+                });
+ 
+            //The dragover
+                $("#dvright").on('dragover', function (evt) {
+                    evt.preventDefault();
+                });
+        }
+               ///Function to load products using call to WEB API
+        function loadProducts() {
+            var items="";
+            items = $("[draggable]");
+            console.log(items.concat);
+            $("#lstproducts").html(items);
+                setEvents();
+        }
+    });
+</script>

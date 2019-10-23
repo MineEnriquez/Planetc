@@ -38,6 +38,7 @@ namespace Planetc.Controllers
         [HttpGet]
         public IActionResult EventPlannerGet()
         {
+            ViewBag.Products = dbContext.Products.ToList();
              return View("EventPlanner");
         }
         #endregion
@@ -159,6 +160,14 @@ namespace Planetc.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        #endregion
+    
+        #region Data
+        [Route("Products")]
+        public IEnumerable<Product> GetProducts()
+        {
+            return dbContext.Products.ToList();
+        }
         #endregion
     }
 }
