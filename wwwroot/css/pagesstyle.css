@@ -1,0 +1,25 @@
+.table { 
+  float: left; 
+  margin: 10px 10px 10px 0px; 
+}
+.stage { 
+  width: 100px; 
+  height: 100px; 
+  padding: 0.5em; 
+  float: left; 
+  margin: 10px 10px 10px 0px; 
+  border: black solid 1px;
+}
+#droppable { 
+  width: 1000px; 
+  height: 800px; 
+  padding: 0.5em; 
+  float: left; 
+  margin: 10px; 
+  /* background-image: url('/iframes/ballroom03.jpeg'); */
+
+}
+body{
+  height: 800px;
+
+}

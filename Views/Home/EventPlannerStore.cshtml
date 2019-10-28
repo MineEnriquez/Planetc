@@ -1,14 +1,17 @@
+
 @using Planetc.Models
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="~/css/store.css" />
+<link rel="stylesheet" href="~/css/tabs.css" />
 <style>
     body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
-    background-image: url("/img/wedding.jpeg");
-}
+        /* Margin bottom by footer height */
+        margin-bottom: 60px;
+        background-image: url("/img/eventplanner.jpeg");
+        background-position: top;
+        
+    }
 </style>
-
 
 <div>
     <h1>Event Planning</h1>
@@ -50,7 +53,6 @@
                         <input id="Cart" type="hidden" value="">
                         <input type="submit" value="Add to Checklist">
                 </form>
-                <button></button>
             </div>
         </div>
     </div>
@@ -77,7 +79,7 @@
                     var data = evt.originalEvent.dataTransfer.getData("Text");
                     var ss = evt.originalEvent.dataTransfer.getData("Text");
                     var lst = $("#lstselectedproducts");
-                    var li = "<li class='small cartitem'>" + data+"</li>";
+                    var li = "<li class='small'>" + data+"</li>";
                     li.textContent = data;
                     lst.append(li);
                 });
@@ -96,9 +98,4 @@
                 setEvents();
         }
     });
-        function addtasks(taks) {
-      var lst = $("#lstchecklist");
-      lst.append(fur);
-      $(".dragable").draggable();
-    }
 </script>

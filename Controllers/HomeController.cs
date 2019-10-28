@@ -42,6 +42,15 @@ namespace Planetc.Controllers
              return View("EventPlanner");
         }
         #endregion
+        #region Event Planner Layout
+        [Route("EventPlannerLayout")]
+        [HttpGet]
+        public IActionResult EventPlannerLayoutGet()
+        {
+            ViewBag.Products = dbContext.Products.ToList();
+             return View("EventPlannerLayout");
+        }
+        #endregion
         //============================================================================================//
 
         #region LOGIN AND REGISTRATION
@@ -169,5 +178,35 @@ namespace Planetc.Controllers
             return dbContext.Products.ToList();
         }
         #endregion
-    }
+
+        [Route("AddWedding")]
+        [HttpGet]
+        public IActionResult DisplayTheAddWeddingPage()
+        {
+            ViewBag.Name = HttpContext.Session.GetString("Name");
+            ViewBag.UserId = HttpContext.Session.GetInt32("UserId");
+            return View("AddWedding");
+        }
+
+        [Route("CreateWedding")]
+        [HttpPost]
+        public IActionResult CreateWedding(Wedding _newWedding)
+        {
+           if(ModelState.IsValid)
+            {
+                dbContext.Weddings.Add(_newWedding);
+                dbContext.SaveChanges();
+
+                return Redirect("/EventPlanner");
+            }
+            else
+            {
+                // Oh no!  We need to return a ViewResponse to preserve the ModelState, and the errors it now contains!
+                return View("AddWedding");
+            }
+        }
+
+
+
+        }
 }

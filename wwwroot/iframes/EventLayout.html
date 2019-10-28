@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Droppable - Default functionality</title>
+  <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="/css/pagesstyle.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/css/eventlayout.css">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+  <script>
+    $(function () {
+      $(".dragable").draggable();
+      $("#droppable").droppable({
+        drop: function (event, ui) {
+          $(this)
+            .addClass("ui-state-highlight")
+            .find("p")
+            .html("Dropped!");
+        }
+      });
+    });
+    function addwithnotes(srcimg, classname) {
+      var lst = $("#lstfurniture");
+      var fur = "<div class='ui-widget-content sideByside dragable'><div><img class='"+ classname +"' src='"+ srcimg +"' alt=''> </div><div><input class='smallinput' type='text'> </div></div>";
+      lst.append(fur);
+      $(".dragable").draggable();
+    }
+    function keepadding(srcimg, classname) {
+      var lst = $("#lstfurniture");
+      var fur = "<div class='ui-widget-content sideByside dragable'><img class='"+ classname +"' src='"+ srcimg +"' alt=''></div>";
+      lst.append(fur);
+      $(".dragable").draggable();
+    }
+  </script>
+</head>
+
+<body id="body">
+  <!-- <button id="save_image_locally" onclick="take()">Snapshot</button> -->
+  <div>
+    <button onclick="addwithnotes('/img/venues/table01.png', 'rectangle')"><img class="btnimg" src="/img/venues/table01.png" alt=""></button>
+    <button onclick="addwithnotes('/img/venues/table02.png', 'circular')"><img class="btnimg" src="/img/venues/table02.png" alt=""></button>
+    <button onclick="addwithnotes('/img/venues/table03.png', 'rectangle')"><img class="btnimg" src="/img/venues/table03.png" alt=""></button>
+    <button onclick="addwithnotes('/img/venues/table04.png', 'circular')"><img class="btnimg" src="/img/venues/table04.png" alt=""></button>
+    
+    <button onclick="keepadding('/img/venues/dancingfloor.png', 'dancearea')"><img class="btnimg" src="/img/venues/dancingfloor.png" alt=""></button>
+    <button onclick="keepadding('/img/venues/dancingico.png', '')"><img class="btnimg" src="/img/venues/dancingico.png" alt=""></button>
+    <button onclick="keepadding('/img/venues/cake.png', '', 'Cake area')"><img class="btnimg" src="/img/venues/cake.png" alt=""></button>
+    <button onclick="keepadding('/img/venues/rings.png', '')"><img class="btnimg" src="/img/venues/rings.png" alt=""></button>
+    <button onclick="keepadding('/img/venues/band.png', '')"><img class="btnimg" src="/img/venues/band.png" alt=""></button>
+  </div>
+  <textarea name="notes" id="" cols="100" rows="3">Notes:</textarea>
+  <div id="droppable" class="ui-widget-header">
+    <p>(Drop here)</p>
+  </div>
+  <div id="lstfurniture">
+    
+  </div>
+
+
+</body>
+
+</html>

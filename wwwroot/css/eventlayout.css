@@ -1,0 +1,45 @@
+.rectangle{
+    width: 70px;
+    height: 50px;
+    display: inline-block;
+    opacity: .9;
+}
+.circular{
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    opacity: .9;
+    vertical-align: center;
+}
+
+.salon{
+background: gray;
+}
+
+button {
+    height: 40px;
+    padding: 3px;
+    margin: 4px;
+    border-radius: 4px;
+}
+.sideByside{
+    display: inline-block;
+}
+.btnimg{
+    height: 20px;
+}
+
+.dancearea{
+    height: 100px;
+    opacity: .4;
+}
+#droppable{
+    height: 500px;
+}
+.smallinput
+{
+    width: 80px;
+    font-size: xx-small;
+    opacity: .6;
+
+}
